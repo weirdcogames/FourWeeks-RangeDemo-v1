@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     
-    public float speed = 100f;
+    public float speed = 10f;
     public int damage = 52;
     //public GameObject hitEffect;
     public Rigidbody2D rb;
@@ -15,67 +15,47 @@ public class Bullet : MonoBehaviour
     public bool isHit;
     public float hitRadius;
 
+    public float minRange;
+    public float maxRange;
+
 
     void Awake()
     {
-       
+        minRange = 0.5f;
+        maxRange = 0.8f;  
         //Launch that fucker
         rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
-        Destroy(gameObject, 2f);
     }
     public void FixedUpdate()
     {
         isHit = Physics2D.OverlapCircle(hitCheck.position, hitRadius, hitLayer);
+        Destroy(this.gameObject, Random.Range(minRange, maxRange));
     }
 
-    void Collision2D(Collider2D collision)
-    {
-        isHit = true;
-        TestTarget enemy = collision.GetComponent<TestTarget>();
-        BoxCollider2D collider = collision.GetComponent<BoxCollider2D>();
-
-
-        DestroyIt();
-
-        if (enemy != null)
-        {
-            enemy.TakeDamage(damage);
-            DestroyIt();
-        }
-        else if (collider != null)
-        {
-            DestroyIt();
-        }
-
-        void DestroyIt()
-        {
-            Destroy(gameObject, 0.001f);
-        }
-        //Instantiate(hitEffect, transform.position, transform.rotation);
-    }
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        isHit    = true;
-        TestTarget enemy = collision.GetComponent<TestTarget>();
+        isHit = true;
+        Health target = collision.GetComponent<Health>();
         BoxCollider2D collider = collision.GetComponent<BoxCollider2D>();
-        
 
+        if (collider.tag == "Enemy")
+        {
+            target.TakeDamage(damage);
+            DestroyIt();
+        }
+        else if (collider.tag == "Walls")
+        {
+            DestroyIt();
+        }
         DestroyIt();
 
-        if (enemy != null)
-        {
-            enemy.TakeDamage(damage);
-            DestroyIt();
-        }
-        else if (collider != null)
-        {
-            DestroyIt();
-        }
+       
 
         void DestroyIt()
         {
-            Destroy(gameObject, 0.001f);
+            Destroy(this.gameObject, 0.001f);
+            //Instantiate(hitEffect, transform.position, transform.rotation);  
         }
-        //Instantiate(hitEffect, transform.position, transform.rotation);
     }
 }

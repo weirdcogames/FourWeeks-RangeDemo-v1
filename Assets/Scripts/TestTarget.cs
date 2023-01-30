@@ -39,13 +39,13 @@ public class TestTarget : MonoBehaviour
     public void Break()
     {
         //Disabled hit box
-        Debug.Log("DISABLED");
+        Debug.Log("KILLED " + name +".");
 
-        player.enemiesKilled++;
-        range.roundKills++;
-        range.totalKills++;
+        //player.enemiesKilled++;
+        //range.roundKills++;
+        //range.totalKills++;
 
-        animator.Play("targetBreak");
+        //animator.Play("targetBreak");
         this.gameObject.SetActive(false);
     }
 

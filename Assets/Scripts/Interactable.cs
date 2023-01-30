@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour
                 //Add object to PickedUpItems List
                 FindObjectOfType<PlayerStats>().equippedPistol = true;
 
-                FindObjectOfType<PlayerStats>().equippedSMG = false;
+                FindObjectOfType<PlayerStats>().equippedRifle = false;
                 FindObjectOfType<PlayerStats>().equippedShotgun = false;
 
                 FindObjectOfType<InteractionSystem>().PickUpItem(gameObject);
@@ -32,7 +32,7 @@ public class Interactable : MonoBehaviour
                 break;
             case InteractionType.TestSMGRange:
                 //Add object to PickedUpItems List
-                FindObjectOfType<PlayerStats>().equippedSMG = true;
+                FindObjectOfType<PlayerStats>().equippedRifle = true;
 
                 FindObjectOfType<PlayerStats>().equippedPistol = false;
                 FindObjectOfType<PlayerStats>().equippedShotgun = false;
@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
                 FindObjectOfType<PlayerStats>().equippedShotgun = true;
 
                 FindObjectOfType<PlayerStats>().equippedPistol = false;
-                FindObjectOfType<PlayerStats>().equippedSMG = false;
+                FindObjectOfType<PlayerStats>().equippedRifle = false;
 
                 FindObjectOfType<InteractionSystem>().PickUpItem(gameObject);
                 FindObjectOfType<TestShotgunRange>().Pickup();

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Header("Combat Logic")]
     public Rigidbody2D rb;

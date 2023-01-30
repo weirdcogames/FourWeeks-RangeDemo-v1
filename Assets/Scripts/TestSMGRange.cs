@@ -29,7 +29,7 @@ public class TestSMGRange : MonoBehaviour
 
     public void Replace()
     {
-        playerStats.equippedSMG = false;
+        playerStats.equippedRifle = false;
         anim.Play("pistolholster");
         testSMG.SetActive(false);
         //Disable GameObject in manager
